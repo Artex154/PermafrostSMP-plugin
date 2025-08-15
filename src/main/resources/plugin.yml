@@ -1,0 +1,10 @@
+name: Permafrost
+version: '1.0-SNAPSHOT'
+main: be.artex.permafrost.Permafrost
+api-version: '1.21'
+commands:
+  ice:
+    permission: permafrost.command.ice
+    usage: "/ice <player> <add/removes/set> <amount>"
+  leaderboard:
+    usage: "/leaderboard"
