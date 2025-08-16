@@ -5,11 +5,13 @@ import be.artex.permafrost.Statistics;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
@@ -53,9 +55,10 @@ public class BlockEvent implements Listener {
             return;
 
         Player player = event.getPlayer();
+        ItemStack stack = player.getInventory().getItemInMainHand();
         Integer value = ICE_VALUES.get(material);
 
-        if (value != null)
+        if (value != null && stack.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH))
             Statistics.addInt(player, ICE, value);
     }
 
