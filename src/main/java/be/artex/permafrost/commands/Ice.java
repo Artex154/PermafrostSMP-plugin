@@ -36,13 +36,13 @@ public class Ice implements CommandExecutor {
 
         switch (args[1]) {
             case "add" ->
-                sender.sendMessage(Component.text("You added " + amountArg + " ice to " + playerName + ". He now has " + Statistics.addInt(player, ICE, amount) + " ice."));
+                sender.sendMessage(Component.text("You added " + amountArg + " ice collection to " + playerName + ". He now has " + Statistics.addInt(player, ICE, amount) + " ice collection."));
 
             case "remove" ->
-                sender.sendMessage(Component.text("You removed " + amountArg + " ice from " + playerName + ". He now has " + Statistics.removeInt(player, ICE, amount) + " ice."));
+                sender.sendMessage(Component.text("You removed " + amountArg + " ice collection from " + playerName + ". He now has " + Statistics.removeInt(player, ICE, amount) + " ice collection."));
 
             case "set" ->
-                    sender.sendMessage(Component.text(playerName + " now has" + Statistics.setInt(player, ICE, amount) + " ice."));
+                sender.sendMessage(Component.text(playerName + " now has " + Statistics.setInt(player, ICE, amount) + " ice collection."));
 
             default -> {
                 return false;

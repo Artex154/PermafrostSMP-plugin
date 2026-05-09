@@ -1,9 +1,9 @@
 package be.artex.permafrost.listeners;
 
-import be.artex.permafrost.Permafrost;
 import be.artex.permafrost.Statistics;
+import io.papermc.paper.math.BlockPosition;
+import io.papermc.paper.math.Position;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -12,18 +12,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.MetadataValue;
-import org.bukkit.plugin.Plugin;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("UnstableApiUsage")
 public class BlockEvent implements Listener {
-    private static final Plugin INSTANCE = Permafrost.instance;
-    private static final NamespacedKey ICE = Statistics.ICE_COLLECTION;
-
-    private static final String PLACED_META_DATA_KEY = "placed";
-    private static final FixedMetadataValue PLACED_META_DATA_VALUE = new FixedMetadataValue(INSTANCE, true);
+    private static final List<BlockPosition> PLACED_BLOCKS = new ArrayList<>();
 
     private static final Map<Material, Integer> ICE_VALUES = Map.of(
             Material.ICE, 1,
@@ -32,34 +28,31 @@ public class BlockEvent implements Listener {
     );
 
     public static void markBlockAsPlaced(Block block) {
-        if (block.hasMetadata(PLACED_META_DATA_KEY))
-            block.removeMetadata(PLACED_META_DATA_KEY, INSTANCE);
-
-        block.setMetadata(PLACED_META_DATA_KEY, PLACED_META_DATA_VALUE);
+        PLACED_BLOCKS.add(Position.block(block.getLocation()));
     }
 
     public static boolean isMarkedAsPlaced(Block block) {
-        return block.getMetadata(PLACED_META_DATA_KEY).stream()
-                .filter(metadata -> metadata.getOwningPlugin() == INSTANCE)
-                .map(MetadataValue::asBoolean)
-                .findFirst()
-                .orElse(false);
+        return PLACED_BLOCKS.contains(Position.block(block.getLocation()));
     }
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
+        Player player = event.getPlayer();
+        ItemStack stack = player.getInventory().getItemInMainHand();
+
+        if (stack == null || stack.getType().isAir() || !stack.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH))
+            return;
+
         Block block = event.getBlock();
-        Material material = block.getType();
 
         if (isMarkedAsPlaced(block))
             return;
 
-        Player player = event.getPlayer();
-        ItemStack stack = player.getInventory().getItemInMainHand();
+        Material material = block.getType();
         Integer value = ICE_VALUES.get(material);
 
-        if (value != null && stack.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH))
-            Statistics.addInt(player, ICE, value);
+        if (value != null)
+            Statistics.addInt(player, Statistics.ICE_COLLECTION, value);
     }
 
     @EventHandler

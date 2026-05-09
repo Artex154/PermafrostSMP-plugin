@@ -51,7 +51,7 @@ public class Leaderboard implements CommandExecutor {
             if (entry.getKey() == null || entry.getValue() == null)
                 break;
 
-            sender.sendMessage(Component.text("#" + (i + 1), TextColor.color(63, 208, 212))
+            sender.sendMessage(Component.text("#" + (i + 1) + ".", TextColor.color(63, 208, 212))
                     .append(Component.text(" " + entry.getKey() + ": ", NamedTextColor.WHITE))
                     .append(Component.text(entry.getValue(), TextColor.color(63, 208, 212))));
         }
