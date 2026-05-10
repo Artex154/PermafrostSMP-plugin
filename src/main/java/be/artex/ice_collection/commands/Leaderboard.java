@@ -1,6 +1,6 @@
-package be.artex.permafrost.commands;
+package be.artex.ice_collection.commands;
 
-import be.artex.permafrost.Statistics;
+import be.artex.ice_collection.Statistics;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;

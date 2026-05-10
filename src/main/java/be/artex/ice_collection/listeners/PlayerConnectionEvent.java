@@ -1,8 +1,8 @@
-package be.artex.permafrost.listeners;
+package be.artex.ice_collection.listeners;
 
-import be.artex.permafrost.Permafrost;
-import be.artex.permafrost.Scoreboard;
-import be.artex.permafrost.Statistics;
+import be.artex.ice_collection.IceCollection;
+import be.artex.ice_collection.Scoreboard;
+import be.artex.ice_collection.Statistics;
 import fr.mrmicky.fastboard.adventure.FastBoard;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
@@ -23,11 +23,11 @@ public class PlayerConnectionEvent implements Listener {
         if (!playerPDC.has(Statistics.ICE_COLLECTION))
             Statistics.setInt(player, Statistics.ICE_COLLECTION, 0);
 
-        if (!Permafrost.showScoreboard)
+        if (!IceCollection.showScoreboard)
             return;
 
         FastBoard board = new FastBoard(player);
-        String scoreboardTitle = Permafrost.instance.getConfig().getString("scoreboard_title");
+        String scoreboardTitle = IceCollection.instance.getConfig().getString("scoreboard_title");
 
         if (scoreboardTitle != null)
             board.updateTitle(Component.text(scoreboardTitle));
@@ -36,12 +36,12 @@ public class PlayerConnectionEvent implements Listener {
 
         Scoreboard.updateScoreboard(board, player);
 
-        Permafrost.boards.put(player.getUniqueId(), board);
+        IceCollection.boards.put(player.getUniqueId(), board);
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        if (Permafrost.showScoreboard)
-            Permafrost.boards.remove(event.getPlayer().getUniqueId());
+        if (IceCollection.showScoreboard)
+            IceCollection.boards.remove(event.getPlayer().getUniqueId());
     }
 }

@@ -1,10 +1,11 @@
-name: Permafrost
+name: IceCollection
 version: '1.0-SNAPSHOT'
-main: be.artex.permafrost.Permafrost
+main: be.artex.ice_collection.IceCollection
 api-version: '26.1'
 commands:
   ice:
-    permission: permafrost.command.ice
+    permission: icecollection.command.ice
     usage: "/ice <player> <add/removes/set> <amount>"
   leaderboard:
+    permission: icecollection.command.leaderboard
     usage: "/leaderboard"

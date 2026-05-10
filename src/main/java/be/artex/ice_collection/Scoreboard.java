@@ -1,4 +1,4 @@
-package be.artex.permafrost;
+package be.artex.ice_collection;
 
 import fr.mrmicky.fastboard.adventure.FastBoard;
 import net.kyori.adventure.text.Component;
@@ -27,17 +27,17 @@ public class Scoreboard {
         lines.add(BORDER);
         lines.add(Component.space());
 
-        if (Permafrost.instance.getConfig().getBoolean("ice_collection_statistic"))
+        if (IceCollection.instance.getConfig().getBoolean("ice_collection_statistic"))
             lines.add(ICE_COLLECTION_PREFIX.append(
                 Component.text(Statistics.getInt(player, Statistics.ICE_COLLECTION), TextColor.color(32, 195, 208))));
 
-        if (Permafrost.instance.getConfig().getBoolean("playtime_statistic"))
+        if (IceCollection.instance.getConfig().getBoolean("playtime_statistic"))
             lines.add(PLAYTIME_PREFIX.append(
                 Component.text(Statistics.playerHoursPlaytime(player) + " ʜᴏᴜʀs", NamedTextColor.BLUE)));
 
         lines.add(Component.space());
 
-        if (Permafrost.instance.getConfig().getBoolean("online_player_count"))
+        if (IceCollection.instance.getConfig().getBoolean("online_player_count"))
             lines.add(ONLINE_PLAYERS_PREFIX.append(
                             Component.text(Bukkit.getOnlinePlayers().size(), TextColor.color(235, 75, 6))));
 

@@ -1,9 +1,9 @@
-package be.artex.permafrost;
+package be.artex.ice_collection;
 
-import be.artex.permafrost.commands.Ice;
-import be.artex.permafrost.commands.Leaderboard;
-import be.artex.permafrost.listeners.BlockEvent;
-import be.artex.permafrost.listeners.PlayerConnectionEvent;
+import be.artex.ice_collection.commands.Ice;
+import be.artex.ice_collection.commands.Leaderboard;
+import be.artex.ice_collection.listeners.BlockEvent;
+import be.artex.ice_collection.listeners.PlayerConnectionEvent;
 import fr.mrmicky.fastboard.adventure.FastBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public final class Permafrost extends JavaPlugin {
+public final class IceCollection extends JavaPlugin {
     public static Plugin instance = null;
     public static final Map<UUID, FastBoard> boards = new HashMap<>();
 

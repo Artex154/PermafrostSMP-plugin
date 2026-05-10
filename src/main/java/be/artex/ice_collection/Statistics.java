@@ -1,4 +1,4 @@
-package be.artex.permafrost;
+package be.artex.ice_collection;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
@@ -6,8 +6,9 @@ import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 
+@SuppressWarnings("DataFlowIssue")
 public class Statistics {
-    public static final NamespacedKey ICE_COLLECTION = new NamespacedKey(Permafrost.instance, "ice_collection");
+    public static final NamespacedKey ICE_COLLECTION = new NamespacedKey(IceCollection.instance, "ice_collection");
 
     public static int getInt(Player player, NamespacedKey key) {
         return player.getPersistentDataContainer().get(key, PersistentDataType.INTEGER);
