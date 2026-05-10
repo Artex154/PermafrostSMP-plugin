@@ -40,6 +40,9 @@ public final class IceCollection extends JavaPlugin {
         getCommand("ice").setExecutor(new Ice());
         getCommand("leaderboard").setExecutor(new Leaderboard());
 
+        if (!showScoreboard)
+            return;
+
         Bukkit.getScheduler().runTaskTimer(this, () -> Bukkit.getOnlinePlayers().forEach((player -> {
             FastBoard board = boards.get(player.getUniqueId());
 

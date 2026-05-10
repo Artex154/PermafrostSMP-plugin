@@ -9,3 +9,5 @@ scoreboard_title : "Example Scoreboard"
 ice_collection_statistic : true # Will the ice collection statistic be shown in the scoreboard
 playtime_statistic : true # Will the playtime statistic (in hours) be shown in the scoreboard
 online_player_count : true # Will the online player count be shown in the scoreboard
+
+ice_command_requires_op : true # If this is true, the "/ice" command WILL REQUIRE op. If you want the command to be used with a certain permission, put this to FALSE. This does not apply to the console.

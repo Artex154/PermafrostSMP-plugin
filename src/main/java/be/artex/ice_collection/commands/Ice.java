@@ -1,7 +1,9 @@
 package be.artex.ice_collection.commands;
 
+import be.artex.ice_collection.IceCollection;
 import be.artex.ice_collection.Statistics;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
@@ -15,6 +17,15 @@ public class Ice implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+        if (IceCollection.instance.getConfig().getBoolean("ice_command_requires_op")) {
+            if (sender instanceof Player player) {
+                if (!player.isOp()) {
+                    player.sendMessage(Component.text("This command requires operator to be used.", NamedTextColor.RED));
+                    return true;
+                }
+            }
+        }
+
         if (args.length <= 2)
             return false;
 
