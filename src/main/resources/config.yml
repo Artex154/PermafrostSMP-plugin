@@ -1,0 +1,11 @@
+# Ice collection values
+ice : 1
+packed_ice : 9
+blue_ice : 81
+
+# Scoreboard
+scoreboard : true # Will the scoreboard be shown
+scoreboard_title : "Example Scoreboard"
+ice_collection_statistic : true # Will the ice collection statistic be shown in the scoreboard
+playtime_statistic : true # Will the playtime statistic (in hours) be shown in the scoreboard
+online_player_count : true # Will the online player count be shown in the scoreboard

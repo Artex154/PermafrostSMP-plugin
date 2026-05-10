@@ -1,5 +1,6 @@
 package be.artex.permafrost.listeners;
 
+import be.artex.permafrost.Permafrost;
 import be.artex.permafrost.Statistics;
 import io.papermc.paper.math.BlockPosition;
 import io.papermc.paper.math.Position;
@@ -22,9 +23,9 @@ public class BlockEvent implements Listener {
     private static final List<BlockPosition> PLACED_BLOCKS = new ArrayList<>();
 
     private static final Map<Material, Integer> ICE_VALUES = Map.of(
-            Material.ICE, 1,
-            Material.PACKED_ICE, 9,
-            Material.BLUE_ICE, 81
+            Material.ICE, Permafrost.iceValue,
+            Material.PACKED_ICE, Permafrost.packedIceValue,
+            Material.BLUE_ICE, Permafrost.blueIceValue
     );
 
     public static void markBlockAsPlaced(Block block) {

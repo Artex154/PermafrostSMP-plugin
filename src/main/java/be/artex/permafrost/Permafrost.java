@@ -17,9 +17,22 @@ public final class Permafrost extends JavaPlugin {
     public static Plugin instance = null;
     public static final Map<UUID, FastBoard> boards = new HashMap<>();
 
+    // Config
+    public static boolean showScoreboard = false;
+    public static int iceValue = 0;
+    public static int packedIceValue = 0;
+    public static int blueIceValue = 0;
+
     @Override
     public void onEnable() {
         instance = this;
+
+        saveDefaultConfig();
+
+        showScoreboard = getConfig().getBoolean("scoreboard");
+        iceValue = getConfig().getInt("ice");
+        packedIceValue = getConfig().getInt("packed_ice");
+        blueIceValue = getConfig().getInt("blue_ice");
 
         Bukkit.getPluginManager().registerEvents(new PlayerConnectionEvent(), this);
         Bukkit.getPluginManager().registerEvents(new BlockEvent(), this);
