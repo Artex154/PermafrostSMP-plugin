@@ -8,6 +8,7 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class Scoreboard {
 
         if (IceCollection.instance.getConfig().getBoolean("ice_collection_statistic"))
             lines.add(ICE_COLLECTION_PREFIX.append(
-                Component.text(Statistics.getInt(player, Statistics.ICE_COLLECTION), TextColor.color(32, 195, 208))));
+                Component.text(format(Statistics.getInt(player, Statistics.ICE_COLLECTION)), TextColor.color(32, 195, 208))));
 
         if (IceCollection.instance.getConfig().getBoolean("playtime_statistic"))
             lines.add(PLAYTIME_PREFIX.append(
@@ -45,5 +46,15 @@ public class Scoreboard {
         lines.add(BORDER);
 
         board.updateLines(lines);
+    }
+
+    private static final DecimalFormat DF = new DecimalFormat("#.##");
+
+    public static String format(long value) {
+        if (value >= 1_000_000)
+            return DF.format(value / 1_000_000.0) + "m";
+        else if (value >= 1_000)
+            return DF.format(value / 1_000.0) + "k";
+        return String.valueOf(value);
     }
 }
