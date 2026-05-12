@@ -41,8 +41,12 @@ public class BlockEvent implements Listener {
         Player player = event.getPlayer();
         ItemStack stack = player.getInventory().getItemInMainHand();
 
-        if (stack == null || stack.getType().isAir() || !stack.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH))
+        if (stack == null || stack.getType().isAir())
             return;
+
+        if (IceCollection.instance.getConfig().getBoolean("requires_silk_touch"))
+            if (!stack.getItemMeta().hasEnchant(Enchantment.SILK_TOUCH))
+                return;
 
         Block block = event.getBlock();
 

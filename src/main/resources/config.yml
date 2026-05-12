@@ -3,11 +3,15 @@ ice : 1
 packed_ice : 9
 blue_ice : 81
 
-# Scoreboard
-scoreboard : true # Will the scoreboard be shown
-scoreboard_title : "Example Scoreboard"
-ice_collection_statistic : true # Will the ice collection statistic be shown in the scoreboard
-playtime_statistic : true # Will the playtime statistic (in hours) be shown in the scoreboard
-online_player_count : true # Will the online player count be shown in the scoreboard
+# Ice collection settings
+requires_silk_touch : false # If true, to get ice collection, the silk touch enchantment will be required.
 
-ice_command_requires_op : true # If this is true, the "/ice" command WILL REQUIRE op. If you want the command to be used with a certain permission, put this to FALSE. This does not apply to the console.
+# Scoreboard
+scoreboard : true # If true, the scoreboard will be shown
+scoreboard_title : "Example Scoreboard"
+ice_collection_statistic : true # If true, the ice collection statistic will be shown in the scoreboard
+playtime_statistic : true # If true, the playtime statistic (in hours) will be shown in the scoreboard
+online_player_count : true # If true, the online player count will be shown in the scoreboard
+
+# Commands
+ice_command_requires_op : true # If true, the "/ice" command WILL REQUIRE op. If you want the command to be used with a certain permission, put this to FALSE. This does not apply to the console.
